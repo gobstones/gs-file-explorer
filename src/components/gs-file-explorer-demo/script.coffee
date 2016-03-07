@@ -3,11 +3,11 @@ Polymer
   
   attached: ->
     this.fileExplorer = this.$.explorer
-    _options = [
-      {name: "Open", action:"abrir"}, 
-      {name: "Remove", action:"borrar"}, 
-      {name: "Open in new Tab", action:"abrir"}
-    ]
-    file = {name : "index.txt", options : _options} 
 
-    this.fileExplorer.addFile(file)
+    index = {name : "index.html"}
+    style = {name: "style.css"}
+    script = {name: "script.js"}
+
+    this.fileExplorer.addFile(index)
+    this.fileExplorer.addFile(style)
+    this.fileExplorer.addFile(script)

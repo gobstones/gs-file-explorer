@@ -16,24 +16,48 @@
         'contextmenu': 'openMenu'
       },
       properties: {
-        data: {
-          type: {},
-          value: {}
+        name: {
+          type: String
         }
       },
       attached: function() {},
-      openMenu: function(event) {
-        var handler;
-        handler = (function(_this) {
-          return function() {
-            console.log("Cerrado");
-            _this.fire('closeGsContextMenu', _this);
-            return document.removeEventListener('mousedown', handler);
-          };
-        })(this);
-        document.addEventListener('mousedown', handler);
-        event.preventDefault();
-        return this.fire('openGsContextMenu', this);
+      generateOptions: function() {
+        var self;
+        if (this.options) {
+          return;
+        }
+        self = this;
+        this.options = [
+          {
+            name: 'Open',
+            action: function() {
+              return self.fire('openFile', self);
+            }
+          }, {
+            name: 'Remove',
+            action: function() {
+              return self.fire('removeFile', self);
+            }
+          }, {
+            name: 'Duplicate',
+            action: function() {
+              return self.fire('duplicateFile', self);
+            }
+          }, {
+            name: 'Rename',
+            action: function() {
+              return self.fire('renameFile', self);
+            }
+          }
+        ];
+        return console.log(this.options);
+      },
+      openMenu: function(browser_event) {
+        this.generateOptions();
+        browser_event.preventDefault();
+        return this.fire('openGsContextMenu', {
+          file: this
+        });
       }
     });
 

@@ -3,7 +3,11 @@
 <dom-module id="gs-file-explorer">
   <template>
     <style>
-      
+      .listContainer {
+        margin: 0px;
+        padding: 0;
+        list-style-type: none;
+      }
 
       /*# sourceMappingURL=style.css.map */
 
@@ -11,9 +15,12 @@
 
 
     <div>
-      <template is="dom-repeat" items="{{files}}" as="file">
-        <gs-file-explorer-item data={{file}}> </gs-file-explorer-item>
-      </template>
+       <ul class="listContainer">
+          <template is="dom-repeat" items="{{files}}" as="file">
+             <li> <gs-file-explorer-item data={{file}}> </gs-file-explorer-item></li>
+          </template>
+        </ul>
+
     </div>
 
     <gs-context-menu id="optionsMenu"> </gs-context-menu>
@@ -29,7 +36,21 @@
       },
       listeners: {
         'openGsContextMenu': 'displayOptions',
-        'closeGsContextMenu': 'closeOptions'
+        'processOption': 'makeAction'
+      },
+      makeAction: function(polymer_event) {
+        var option;
+        option = polymer_event.detail.file;
+        option.action();
+        return this.closeOptions();
+      },
+      created: function() {
+        return this.closeOptions = (function(_this) {
+          return function() {
+            _this.contextMenu.hideMenu();
+            return document.removeEventListener('mousedown', _this.closeOptions);
+          };
+        })(this);
       },
       addFile: function(file) {
         return this.push('files', file);
@@ -37,12 +58,11 @@
       attached: function() {
         return this.contextMenu = this.$.optionsMenu;
       },
-      displayOptions: function(event) {
-        this.contextMenu.addOptions(event.detail.data.options);
-        return this.contextMenu.showMenu();
-      },
-      closeOptions: function(event) {
-        return this.contextMenu.hideMenu();
+      displayOptions: function(polymer_event) {
+        this.contextMenu.addOptions(polymer_event.detail.file.options);
+        this.contextMenu.showMenu();
+        document.addEventListener('mousedown', this.closeOptions);
+        return polymer_event.preventDefault();
       }
     });
 

@@ -5,19 +5,30 @@ Polymer
     'contextmenu': 'openMenu'
 
   properties:
-    data:
-      type: {}
-      value: {}
+    name:
+      type: String
 
   attached: ->
+  
+  generateOptions:->
+    if this.options then return
+    self = this
+    this.options = [
+        name: 'Open'
+        action: -> self.fire 'openFile', self
+      ,  
+        name: 'Remove'
+        action: -> self.fire 'removeFile', self
+      , 
+        name: 'Duplicate'
+        action: -> self.fire 'duplicateFile', self
+      , 
+        name: 'Rename'
+        action: -> self.fire 'renameFile', self
+    ]
+    console.log this.options
 
-  openMenu: (event)->
-    
-    handler = =>
-      console.log "Cerrado"
-      this.fire('closeGsContextMenu', this)
-      document.removeEventListener 'mousedown', handler
-
-    document.addEventListener 'mousedown', handler
-    event.preventDefault()
-    this.fire('openGsContextMenu', this)
+  openMenu: (browser_event)->
+    this.generateOptions()
+    browser_event.preventDefault()
+    this.fire('openGsContextMenu', file:this)

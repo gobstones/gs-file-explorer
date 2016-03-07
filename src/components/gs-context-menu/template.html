@@ -3,7 +3,7 @@
       
     <ul class="listContainer">
         <template is="dom-repeat" items={{_options}} as="option">
-            <li  class="item-link">{{option.name}}</li>
+            <li on-tap="make_action" item="{{option}}" class="item-link">{{option.name}}</li>
         </template>
     </ul>
 

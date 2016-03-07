@@ -14,6 +14,7 @@
         padding: 0;
         padding: 10px;
         border-radius: 2px;
+        cursor: pointer;
       }
 
       .item-link:hover {
@@ -36,7 +37,7 @@
           
         <ul class="listContainer">
             <template is="dom-repeat" items={{_options}} as="option">
-                <li  class="item-link">{{option.name}}</li>
+                <li on-tap="make_action" item="{{option}}" class="item-link">{{option.name}}</li>
             </template>
         </ul>
 
@@ -56,6 +57,13 @@
           value: false
         }
       },
+      listeners: {
+        'mousedown': 'avoidPropagation'
+      },
+      avoidPropagation: function(browserEvent) {
+        browserEvent.preventDefault();
+        return browserEvent.stopPropagation();
+      },
       addOptions: function(options) {
         return this._options = options;
       },
@@ -64,6 +72,11 @@
       },
       hideMenu: function() {
         return this.toggleContextMenu = false;
+      },
+      make_action: function(nosequemierdaevent) {
+        return this.fire('processOption', {
+          file: nosequemierdaevent.target.item
+        });
       }
     });
 
