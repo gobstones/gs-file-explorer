@@ -1,0 +1,50 @@
+<link rel="import" href="gs-file-explorer-item.html">
+<link rel="import" href="gs-context-menu.html">
+<dom-module id="gs-file-explorer">
+  <template>
+    <style>
+      
+
+      /*# sourceMappingURL=style.css.map */
+
+    </style>
+
+
+    <div>
+      <template is="dom-repeat" items="{{files}}" as="file">
+        <gs-file-explorer-item data={{file}}> </gs-file-explorer-item>
+      </template>
+    </div>
+
+    <gs-context-menu id="optionsMenu"> </gs-context-menu>
+  </template>
+  <script>
+    Polymer({
+      is: 'gs-file-explorer',
+      properties: {
+        files: {
+          type: [],
+          value: []
+        }
+      },
+      listeners: {
+        'openGsContextMenu': 'displayOptions',
+        'closeGsContextMenu': 'closeOptions'
+      },
+      addFile: function(file) {
+        return this.push('files', file);
+      },
+      attached: function() {
+        return this.contextMenu = this.$.optionsMenu;
+      },
+      displayOptions: function(event) {
+        this.contextMenu.addOptions(event.detail.data.options);
+        return this.contextMenu.showMenu();
+      },
+      closeOptions: function(event) {
+        return this.contextMenu.hideMenu();
+      }
+    });
+
+  </script>
+</dom-module>

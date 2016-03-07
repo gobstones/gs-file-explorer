@@ -1,0 +1,11 @@
+<template is="dom-if" if="{{toggleContextMenu}}">
+  <div id="contextBox" class$="{{toggleOpacity}}">
+      
+    <ul class="listContainer">
+        <template is="dom-repeat" items={{_options}} as="option">
+            <li  class="item-link">{{option.name}}</li>
+        </template>
+    </ul>
+
+  </div>
+</template>

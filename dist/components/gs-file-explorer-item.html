@@ -1,0 +1,41 @@
+<dom-module id="gs-file-explorer-item">
+  <template>
+    <style>
+      
+
+      /*# sourceMappingURL=style.css.map */
+
+    </style>
+
+    <i class="fa fa-file-o"></i><a> {{data.name}}<a>
+  </template>
+  <script>
+    Polymer({
+      is: 'gs-file-explorer-item',
+      listeners: {
+        'contextmenu': 'openMenu'
+      },
+      properties: {
+        data: {
+          type: {},
+          value: {}
+        }
+      },
+      attached: function() {},
+      openMenu: function(event) {
+        var handler;
+        handler = (function(_this) {
+          return function() {
+            console.log("Cerrado");
+            _this.fire('closeGsContextMenu', _this);
+            return document.removeEventListener('mousedown', handler);
+          };
+        })(this);
+        document.addEventListener('mousedown', handler);
+        event.preventDefault();
+        return this.fire('openGsContextMenu', this);
+      }
+    });
+
+  </script>
+</dom-module>

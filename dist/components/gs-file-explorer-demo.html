@@ -1,0 +1,63 @@
+<link rel="import" href="gs-file-explorer.html">
+<dom-module id="gs-file-explorer-demo">
+  <template>
+    <style>
+      #demo-header {
+        margin-left: 30%;
+        background-color: #0052A0;
+        display: table;
+        font-size: 1.5em;
+        border-radius: 5px;
+        width: 40vw;
+        text-align: center;
+      }
+
+      #explorer {
+        padding: 10px;
+        width: 20vw;
+        height: 10vh;
+        background-color: #EAC616;
+        display: table;
+        border-radius: 10px;
+        margin-left: 29.5vw;
+      }
+
+      /*# sourceMappingURL=style.css.map */
+
+    </style>
+
+    <p id="demo-header">An example of <br> <code>&lt;gs-file-explorer&gt;</code>:</p>
+
+
+    <gs-file-explorer id="explorer">
+      
+    </gs-file-explorer>
+  </template>
+  <script>
+    Polymer({
+      is: 'gs-file-explorer-demo',
+      attached: function() {
+        var file, _options;
+        this.fileExplorer = this.$.explorer;
+        _options = [
+          {
+            name: "Open",
+            action: "abrir"
+          }, {
+            name: "Remove",
+            action: "borrar"
+          }, {
+            name: "Open in new Tab",
+            action: "abrir"
+          }
+        ];
+        file = {
+          name: "index.txt",
+          options: _options
+        };
+        return this.fileExplorer.addFile(file);
+      }
+    });
+
+  </script>
+</dom-module>
