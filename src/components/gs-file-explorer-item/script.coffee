@@ -26,9 +26,12 @@ Polymer
         name: 'Rename'
         action: -> self.fire 'renameFile', self
     ]
-    console.log this.options
 
   openMenu: (browser_event)->
     this.generateOptions()
     browser_event.preventDefault()
-    this.fire('openGsContextMenu', file:this)
+    this.fire('openGsContextMenu', 
+      file:this
+      browserEventX: browser_event.x
+      browserEventY: browser_event.y
+    )

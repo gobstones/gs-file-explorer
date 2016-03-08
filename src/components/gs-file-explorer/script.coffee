@@ -28,6 +28,6 @@ Polymer
 
     displayOptions:(polymer_event)->
       this.contextMenu.addOptions(polymer_event.detail.file.options)
-      this.contextMenu.showMenu()
+      this.contextMenu.showMenu(polymer_event.detail.browserEventX, polymer_event.detail.browserEventY)
       document.addEventListener 'mousedown', this.closeOptions
       polymer_event.preventDefault()

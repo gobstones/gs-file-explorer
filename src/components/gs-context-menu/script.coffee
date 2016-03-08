@@ -8,6 +8,7 @@ Polymer
     toggleContextMenu:
       type: Boolean
       value: false
+
   listeners:
     'mousedown': 'avoidPropagation'
 
@@ -18,8 +19,10 @@ Polymer
   addOptions: (options)->
     this._options = options
 
-  showMenu: ->
+  showMenu:(offSetLeft, offSetTop) ->
     this.toggleContextMenu = true
+    this.style.left = offSetLeft + "px"
+    this.style.top = offSetTop + "px"
 
   hideMenu: ->
     this.toggleContextMenu = false

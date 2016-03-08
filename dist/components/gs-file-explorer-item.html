@@ -27,7 +27,7 @@
           return;
         }
         self = this;
-        this.options = [
+        return this.options = [
           {
             name: 'Open',
             action: function() {
@@ -50,13 +50,14 @@
             }
           }
         ];
-        return console.log(this.options);
       },
       openMenu: function(browser_event) {
         this.generateOptions();
         browser_event.preventDefault();
         return this.fire('openGsContextMenu', {
-          file: this
+          file: this,
+          browserEventX: browser_event.x,
+          browserEventY: browser_event.y
         });
       }
     });
