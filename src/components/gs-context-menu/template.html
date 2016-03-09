@@ -2,7 +2,7 @@
   <div id="contextBox">
     <ul class="listContainer">
         <template is="dom-repeat" items={{_options}} as="option">
-            <li on-tap="make_action" item="{{option}}" class="item-link">{{option.name}}</li>
+            <gs-item-list option={{option}}> </gs-item-list>
         </template>
     </ul>
 

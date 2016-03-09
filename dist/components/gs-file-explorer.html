@@ -4,20 +4,32 @@
   <template>
     <style>
       .listContainer {
-        margin: 0px;
+        margin: 0;
         padding: 0;
         list-style-type: none;
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+
+      :host {
+        overflow: hidden;
+      }
+
+      .fileItem:hover {
+        font-weight: bold;
       }
 
       /*# sourceMappingURL=style.css.map */
 
     </style>
 
-
     <div>
+
        <ul class="listContainer">
           <template is="dom-repeat" items="{{files}}" as="file">
-             <li> <gs-file-explorer-item data={{file}}> </gs-file-explorer-item></li>
+             <li class="fileItem"> 
+              <gs-file-explorer-item file={{file}}> </gs-file-explorer-item>
+             </li>
           </template>
         </ul>
 
@@ -38,9 +50,9 @@
         'openGsContextMenu': 'displayOptions',
         'processOption': 'makeAction'
       },
-      makeAction: function(polymer_event) {
+      makeAction: function(polymerEvent) {
         var option;
-        option = polymer_event.detail.file;
+        option = polymerEvent.detail.file;
         option.action();
         return this.closeOptions();
       },
@@ -58,11 +70,11 @@
       attached: function() {
         return this.contextMenu = this.$.optionsMenu;
       },
-      displayOptions: function(polymer_event) {
-        this.contextMenu.addOptions(polymer_event.detail.file.options);
-        this.contextMenu.showMenu(polymer_event.detail.browserEventX, polymer_event.detail.browserEventY);
+      displayOptions: function(polymerEvent) {
+        this.contextMenu.addOptions(polymerEvent.detail.file.options);
+        this.contextMenu.showMenu(polymerEvent.detail.browserEventX, polymerEvent.detail.browserEventY);
         document.addEventListener('mousedown', this.closeOptions);
-        return polymer_event.preventDefault();
+        return polymerEvent.preventDefault();
       }
     });
 

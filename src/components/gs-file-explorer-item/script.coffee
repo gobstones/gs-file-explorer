@@ -5,11 +5,10 @@ Polymer
     'contextmenu': 'openMenu'
 
   properties:
-    name:
-      type: String
+    file:
+      type: {}
+      value: {}
 
-  attached: ->
-  
   generateOptions:->
     if this.options then return
     self = this

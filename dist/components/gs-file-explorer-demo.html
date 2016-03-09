@@ -36,6 +36,12 @@
   <script>
     Polymer({
       is: 'gs-file-explorer-demo',
+      listeners: {
+        'openFile': 'openFile',
+        'removeFile': 'removeFile',
+        'duplicateFile': 'duplicateFile',
+        'renameFile': 'renameFile'
+      },
       attached: function() {
         var index, script, style;
         this.fileExplorer = this.$.explorer;

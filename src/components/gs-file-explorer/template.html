@@ -1,8 +1,10 @@
-
 <div>
+
    <ul class="listContainer">
       <template is="dom-repeat" items="{{files}}" as="file">
-         <li> <gs-file-explorer-item data={{file}}> </gs-file-explorer-item></li>
+         <li class="fileItem"> 
+          <gs-file-explorer-item file={{file}}> </gs-file-explorer-item>
+         </li>
       </template>
     </ul>
 

@@ -1,13 +1,16 @@
 <dom-module id="gs-file-explorer-item">
   <template>
     <style>
-      
+      :host {
+        cursor: pointer;
+        font-size: 1em;
+      }
 
       /*# sourceMappingURL=style.css.map */
 
     </style>
 
-    <i class="fa fa-file-o"></i><a> {{data.name}}<a>
+    <i class="fa fa-file-o"></i><a> {{file.name}}<a>
   </template>
   <script>
     Polymer({
@@ -16,11 +19,11 @@
         'contextmenu': 'openMenu'
       },
       properties: {
-        name: {
-          type: String
+        file: {
+          type: {},
+          value: {}
         }
       },
-      attached: function() {},
       generateOptions: function() {
         var self;
         if (this.options) {

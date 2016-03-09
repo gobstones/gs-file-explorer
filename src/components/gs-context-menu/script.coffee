@@ -9,23 +9,13 @@ Polymer
       type: Boolean
       value: false
 
-  listeners:
-    'mousedown': 'avoidPropagation'
-
-  avoidPropagation: (browserEvent)->
-    browserEvent.preventDefault()
-    browserEvent.stopPropagation()
-
   addOptions: (options)->
     this._options = options
 
   showMenu:(offSetLeft, offSetTop) ->
     this.toggleContextMenu = true
-    this.style.left = offSetLeft + "px"
-    this.style.top = offSetTop + "px"
+    this.style.left = offSetLeft + 2 + "px"
+    this.style.top = offSetTop + 2 + "px"
 
   hideMenu: ->
     this.toggleContextMenu = false
-
-  make_action: (nosequemierdaevent)->
-    this.fire 'processOption', file:nosequemierdaevent.target.item

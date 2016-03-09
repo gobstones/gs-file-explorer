@@ -1,6 +1,12 @@
 Polymer
   is: '#GRUNT_COMPONENT_NAME'
   
+  listeners:
+    'openFile': 'openFile'
+    'removeFile': 'removeFile'
+    'duplicateFile': 'duplicateFile'
+    'renameFile': 'renameFile'
+
   attached: ->
     this.fileExplorer = this.$.explorer
 

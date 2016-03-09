@@ -1,4 +1,4 @@
 {
   "name": "gs-context-menu",
-  "imports": []
+  "imports": ["gs-item-list.html"]
 }

@@ -10,8 +10,8 @@ Polymer
       'openGsContextMenu': 'displayOptions'
       'processOption': 'makeAction'
 
-    makeAction: (polymer_event)->
-      option = polymer_event.detail.file
+    makeAction: (polymerEvent)->
+      option = polymerEvent.detail.file
       option.action()
       this.closeOptions()
 
@@ -26,8 +26,8 @@ Polymer
     attached: ->
       this.contextMenu = this.$.optionsMenu
 
-    displayOptions:(polymer_event)->
-      this.contextMenu.addOptions(polymer_event.detail.file.options)
-      this.contextMenu.showMenu(polymer_event.detail.browserEventX, polymer_event.detail.browserEventY)
+    displayOptions:(polymerEvent)->
+      this.contextMenu.addOptions(polymerEvent.detail.file.options)
+      this.contextMenu.showMenu(polymerEvent.detail.browserEventX, polymerEvent.detail.browserEventY)
       document.addEventListener 'mousedown', this.closeOptions
-      polymer_event.preventDefault()
+      polymerEvent.preventDefault()
