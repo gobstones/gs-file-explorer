@@ -9,11 +9,13 @@ Polymer
 
   attached: ->
     this.fileExplorer = this.$.explorer
-
+    this.mirrorExplorer = this.$.mirrorExplorer
+    
     index = {name : "index.html"}
     style = {name: "style.css"}
     script = {name: "script.js"}
 
-    this.fileExplorer.addFile(index)
-    this.fileExplorer.addFile(style)
-    this.fileExplorer.addFile(script)
+    this.files = [index, style, script]
+
+  removeFile: (polymerEvent)->
+    this.splice('files', polymerEvent.detail.file.file, 1)

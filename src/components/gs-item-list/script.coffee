@@ -10,7 +10,6 @@ Polymer
     'mousedown': 'avoidPropagation'
 
   avoidPropagation: (browserEvent)->
-    console.log "propagation avoided"
     browserEvent.preventDefault()
     browserEvent.stopPropagation()
 

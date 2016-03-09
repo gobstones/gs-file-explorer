@@ -22,6 +22,17 @@
         margin-left: 29.5vw;
       }
 
+      #mirrorExplorer {
+        margin-top: 2vh;
+        padding: 10px;
+        width: 20vw;
+        height: 10vh;
+        background-color: #EAC616;
+        display: table;
+        border-radius: 10px;
+        margin-left: 29.5vw;
+      }
+
       /*# sourceMappingURL=style.css.map */
 
     </style>
@@ -29,9 +40,9 @@
     <p id="demo-header">An example of <br> <code>&lt;gs-file-explorer&gt;</code>:</p>
 
 
-    <gs-file-explorer id="explorer">
-      
-    </gs-file-explorer>
+    <gs-file-explorer files={{files}} id="explorer"></gs-file-explorer>
+
+    <gs-file-explorer files={{files}} id="mirrorExplorer"></gs-file-explorer>
   </template>
   <script>
     Polymer({
@@ -45,6 +56,7 @@
       attached: function() {
         var index, script, style;
         this.fileExplorer = this.$.explorer;
+        this.mirrorExplorer = this.$.mirrorExplorer;
         index = {
           name: "index.html"
         };
@@ -54,9 +66,10 @@
         script = {
           name: "script.js"
         };
-        this.fileExplorer.addFile(index);
-        this.fileExplorer.addFile(style);
-        return this.fileExplorer.addFile(script);
+        return this.files = [index, style, script];
+      },
+      removeFile: function(polymerEvent) {
+        return this.splice('files', polymerEvent.detail.file.file, 1);
       }
     });
 

@@ -16,7 +16,8 @@
     Polymer({
       is: 'gs-file-explorer-item',
       listeners: {
-        'contextmenu': 'openMenu'
+        'contextmenu': 'openMenu',
+        'tap': 'openFile'
       },
       properties: {
         file: {
@@ -34,25 +35,36 @@
           {
             name: 'Open',
             action: function() {
-              return self.fire('openFile', self);
+              return self.fire('openFile', {
+                file: self
+              });
             }
           }, {
             name: 'Remove',
             action: function() {
-              return self.fire('removeFile', self);
+              return self.fire('removeFile', {
+                file: self
+              });
             }
           }, {
             name: 'Duplicate',
             action: function() {
-              return self.fire('duplicateFile', self);
+              return self.fire('duplicateFile', {
+                file: self
+              });
             }
           }, {
             name: 'Rename',
             action: function() {
-              return self.fire('renameFile', self);
+              return self.fire('renameFile', {
+                file: self
+              });
             }
           }
         ];
+      },
+      openFile: function() {
+        return this.fire('openFile', this);
       },
       openMenu: function(browser_event) {
         this.generateOptions();

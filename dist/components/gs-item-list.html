@@ -33,7 +33,6 @@
         'mousedown': 'avoidPropagation'
       },
       avoidPropagation: function(browserEvent) {
-        console.log("propagation avoided");
         browserEvent.preventDefault();
         return browserEvent.stopPropagation();
       },

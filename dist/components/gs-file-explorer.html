@@ -52,7 +52,7 @@
       },
       makeAction: function(polymerEvent) {
         var option;
-        option = polymerEvent.detail.file;
+        option = polymerEvent.detail.option;
         option.action();
         return this.closeOptions();
       },
@@ -63,9 +63,6 @@
             return document.removeEventListener('mousedown', _this.closeOptions);
           };
         })(this);
-      },
-      addFile: function(file) {
-        return this.push('files', file);
       },
       attached: function() {
         return this.contextMenu = this.$.optionsMenu;

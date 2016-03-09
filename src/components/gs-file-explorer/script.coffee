@@ -11,7 +11,7 @@ Polymer
       'processOption': 'makeAction'
 
     makeAction: (polymerEvent)->
-      option = polymerEvent.detail.file
+      option = polymerEvent.detail.option
       option.action()
       this.closeOptions()
 
@@ -19,9 +19,6 @@ Polymer
       this.closeOptions = ()=>
         this.contextMenu.hideMenu()
         document.removeEventListener 'mousedown', this.closeOptions
-
-    addFile: (file) ->
-      this.push('files', file)
 
     attached: ->
       this.contextMenu = this.$.optionsMenu
