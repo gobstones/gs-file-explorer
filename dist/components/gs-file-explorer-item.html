@@ -36,28 +36,28 @@
             name: 'Open',
             action: function() {
               return self.fire('openFile', {
-                file: self
+                file: self.file
               });
             }
           }, {
             name: 'Remove',
             action: function() {
               return self.fire('removeFile', {
-                file: self
+                file: self.file
               });
             }
           }, {
             name: 'Duplicate',
             action: function() {
               return self.fire('duplicateFile', {
-                file: self
+                file: self.file
               });
             }
           }, {
             name: 'Rename',
             action: function() {
               return self.fire('renameFile', {
-                file: self
+                file: self.file
               });
             }
           }

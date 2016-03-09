@@ -58,18 +58,29 @@
         this.fileExplorer = this.$.explorer;
         this.mirrorExplorer = this.$.mirrorExplorer;
         index = {
-          name: "index.html"
+          name: "index.html",
+          content: "content"
         };
         style = {
-          name: "style.css"
+          name: "style.css",
+          content: "content"
         };
         script = {
-          name: "script.js"
+          name: "script.js",
+          content: "content"
         };
         return this.files = [index, style, script];
       },
       removeFile: function(polymerEvent) {
-        return this.splice('files', polymerEvent.detail.file.file, 1);
+        return this.splice('files', polymerEvent.detail.file, 1);
+      },
+      duplicateFile: function(polymerEvent) {
+        var newFile;
+        newFile = {
+          name: polymerEvent.detail.file.name + "(2)",
+          content: polymerEvent.detail.file.content
+        };
+        return this.push('files', newFile);
       }
     });
 

@@ -11,11 +11,18 @@ Polymer
     this.fileExplorer = this.$.explorer
     this.mirrorExplorer = this.$.mirrorExplorer
     
-    index = {name : "index.html"}
-    style = {name: "style.css"}
-    script = {name: "script.js"}
+    index = {name : "index.html", content : "content"}
+    style = {name: "style.css", content : "content"}
+    script = {name: "script.js", content : "content"}
 
     this.files = [index, style, script]
 
   removeFile: (polymerEvent)->
-    this.splice('files', polymerEvent.detail.file.file, 1)
+    this.splice('files', polymerEvent.detail.file, 1)
+
+  duplicateFile: (polymerEvent)->
+    newFile = {name: polymerEvent.detail.file.name + "(2)", content: polymerEvent.detail.file.content}
+    
+    this.push('files', newFile)
+
+  

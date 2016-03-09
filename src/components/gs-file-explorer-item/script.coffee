@@ -14,16 +14,16 @@ Polymer
     self = this
     this.options = [
         name: 'Open'
-        action: -> self.fire 'openFile', file: self
+        action: -> self.fire 'openFile', file: self.file
       ,  
         name: 'Remove'
-        action: -> self.fire 'removeFile', file: self
+        action: -> self.fire 'removeFile', file: self.file
       , 
         name: 'Duplicate'
-        action: -> self.fire 'duplicateFile', file: self
+        action: -> self.fire 'duplicateFile', file: self.file
       , 
         name: 'Rename'
-        action: -> self.fire 'renameFile', file: self
+        action: -> self.fire 'renameFile', file: self.file
     ]
 
   openFile: ->
